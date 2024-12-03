@@ -5,7 +5,7 @@ pub fn resolve() !u32 {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     const allocator = gpa.allocator();
     defer _ = gpa.deinit();
-    var lines = try helper.readFile(allocator, "input_1.txt");
+    var lines = try helper.readFile(allocator, "day_1.txt");
 
     defer {
         for (lines.items) |line| {
