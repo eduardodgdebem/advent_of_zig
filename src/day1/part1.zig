@@ -1,5 +1,5 @@
 const std = @import("std");
-const helper = @import("helper.zig");
+const helper = @import("../helper.zig");
 
 pub fn resolve() !u32 {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
