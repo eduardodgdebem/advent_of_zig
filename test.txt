@@ -1,0 +1,15 @@
+run
++- run advent_of_code
+   +- zig build-exe advent_of_code Debug native 1 errors
+src/day3/part1.zig:19:51: error: expected error union type, found 'i32'
+error: the following command failed with 1 compilation errors:
+/opt/homebrew/Cellar/zig/0.13.0/bin/zig build-exe -ODebug -Mroot=/Users/eduardogoulartdebem/Projects/zig/advent_of_code/src/main.zig --cache-dir /Users/eduardogoulartdebem/Projects/zig/advent_of_code/.zig-cache --global-cache-dir /Users/eduardogoulartdebem/.cache/zig --name advent_of_code --listen=- 
+Build Summary: 2/7 steps succeeded; 1 failed (disable with --summary none)
+run transitive failure
++- run advent_of_code transitive failure
+   +- zig build-exe advent_of_code Debug native 1 errors
+   +- install transitive failure
+      +- install advent_of_code transitive failure
+         +- zig build-exe advent_of_code Debug native (reused)
+error: the following build command failed with exit code 1:
+/Users/eduardogoulartdebem/Projects/zig/advent_of_code/.zig-cache/o/1ef5b07ac3106c5d9c137287ffcfc3d9/build /opt/homebrew/Cellar/zig/0.13.0/bin/zig /Users/eduardogoulartdebem/Projects/zig/advent_of_code /Users/eduardogoulartdebem/Projects/zig/advent_of_code/.zig-cache /Users/eduardogoulartdebem/.cache/zig --seed 0xc824501d -Zab17e92996c8be58 run

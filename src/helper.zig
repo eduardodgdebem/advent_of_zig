@@ -37,3 +37,13 @@ pub fn readFile(allocator: std.mem.Allocator, file_name: []const u8) !std.ArrayL
 
     return lines;
 }
+
+pub fn read_file_2(allocator: std.mem.ALlocator, file_name: []const u8) []u8 {
+    var file = std.fs.cwd().openFile(file_name, .{}) catch {
+        std.debug.panic("file not found: {s}\n", file_name);
+    };
+    defer file.close();
+    return file.readToEndAlloc(allocator, 65535) catch {
+        std.debug.panic("Error reading: {s}\n", .{file_name});
+    };
+}
