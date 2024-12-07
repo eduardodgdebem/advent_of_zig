@@ -38,12 +38,26 @@ pub fn readFile(allocator: std.mem.Allocator, file_name: []const u8) !std.ArrayL
     return lines;
 }
 
-pub fn read_file_2(allocator: std.mem.ALlocator, file_name: []const u8) []u8 {
+pub fn read_file_2(allocator: std.mem.Allocator, file_name: []const u8) []const u8 {
+    // potentially common stuff
     var file = std.fs.cwd().openFile(file_name, .{}) catch {
-        std.debug.panic("file not found: {s}\n", file_name);
+        std.debug.panic("file not found: {s}\n", .{file_name});
     };
     defer file.close();
     return file.readToEndAlloc(allocator, 65535) catch {
         std.debug.panic("Error reading: {s}\n", .{file_name});
     };
+}
+
+pub fn split_lines(allocator: std.mem.Allocator, buf: []const u8) ![][]const u8 {
+    var lines = std.ArrayList([]const u8).init(allocator);
+    defer lines.deinit();
+
+    var iter = std.mem.splitAny(u8, buf, "\n");
+    while (iter.next()) |line| {
+        if (line.len > 0) {
+            try lines.append(try allocator.dupe(u8, line));
+        }
+    }
+    return try lines.toOwnedSlice();
 }
